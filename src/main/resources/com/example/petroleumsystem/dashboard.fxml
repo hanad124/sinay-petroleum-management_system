@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="fxborderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closeWindow" prefHeight="831.0" prefWidth="1535.0" style="-fx-background-color: white; -fx-border-width: 0 0 0 0;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.petroleumsystem.dashboard">
+   <left>
+      <VBox prefHeight="611.0" prefWidth="214.0" style="-fx-background-color: #094FB7;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btn_dashboard" alignment="BASELINE_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onHome" prefHeight="50.0" prefWidth="202.0" style="-fx-background-color: #094FB7; -fx-text-fill: white; -fx-background-radius: 0 5 5 0;" text="Dashboard">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" right="10.0" top="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <image>
+                        <Image url="@images/icons/control_panel_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btn_employee" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#OnEmployee" prefHeight="50.0" prefWidth="209.0" style="-fx-background-color: #094FB7; -fx-text-fill: white; -fx-background-radius: 0 5 5 0;" text="Employee">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets right="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <image>
+                        <Image url="@images/icons/worker_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btn_supplier" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#OnSupplier" prefHeight="50.0" prefWidth="204.0" style="-fx-background-color: #094FB7; -fx-text-fill: white; -fx-background-radius: 0 5 5 0;" text="Supplier">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <image>
+                        <Image url="@images/icons/supplier_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btn_fuel" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#OnFuel" prefHeight="50.0" prefWidth="204.0" style="-fx-background-color: #094FB7; -fx-text-fill: white; -fx-background-radius: 0 5 5 0;" text="Fuel">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <image>
+                        <Image url="@images/icons/gas_station_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btn_purchase" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onPurchase" prefHeight="50.0" prefWidth="206.0" style="-fx-background-color: #094FB7; -fx-text-fill: white; -fx-background-radius: 0 5 5 0;" text="Purchase">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <image>
+                        <Image url="@images/icons/fund_accounting_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btn_customer" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#OnCustomer" prefHeight="50.0" prefWidth="206.0" style="-fx-background-color: #094FB7; -fx-text-fill: white; -fx-background-radius: 0 5 5 0;" text="Customer">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <image>
+                        <Image url="@images/icons/user_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btn_sales" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#OnSale" prefHeight="50.0" prefWidth="211.0" style="-fx-background-color: #094FB7; -fx-text-fill: white; -fx-background-radius: 0 5 5 0;" text="Sales">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <image>
+                        <Image url="@images/icons/fund_accounting_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btn_users" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#OnUser" prefHeight="50.0" prefWidth="210.0" style="-fx-background-color: #094FB7; -fx-text-fill: white; -fx-background-radius: 0 5 5 0;" text="Users">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <image>
+                        <Image url="@images/icons/user_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btn_reports" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#OnReport" prefHeight="50.0" prefWidth="210.0" style="-fx-background-color: #094FB7; -fx-text-fill: white; -fx-background-radius: 0 5 5 0;" text="Reports">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <image>
+                        <Image url="@images/icons/report_file_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btn_logout" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#OnLogOut" prefHeight="50.0" prefWidth="203.0" style="-fx-background-color: #094FB7; -fx-text-fill: white; -fx-background-radius: 0 5 5 0;" text="Log out">
+               <font>
+                  <Font name="SansSerif Regular" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
+                     <image>
+                        <Image url="@images/icons/Logout Rounded_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+               </color></DropShadow>
+         </effect>
+      </VBox>
+   </left>
+   <top>
+      <HBox prefHeight="64.0" prefWidth="1390.0" style="-fx-background-color: #fff; -fx-border-width: 0 0 1 0; -fx-border-color: #E4E1E1; -fx-border-width: 1px;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="112.0" prefWidth="213.0" style="-fx-background-color: #094FB7;">
+               <children>
+                  <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="8.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/petroleum%20logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="45.0" layoutY="34.0" text="SINAY PATROLEUM" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <TextField prefHeight="40.0" prefWidth="266.0" promptText="Search" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-width: 1PX; -fx-border-style: solid; -fx-border-color: #E7E8F2; -fx-border-radius: 5;" translateX="-20.0" translateY="-4.0">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="70.0" top="35.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label fx:id="lblPrintDate" alignment="CENTER" prefHeight="62.0" prefWidth="223.0" textFill="#094fb7" translateY="-7.0">
+               <HBox.margin>
+                  <Insets left="200.0" top="25.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="SansSerif Regular" size="22.0" />
+               </font>
+            </Label>
+            <AnchorPane prefHeight="90.0" prefWidth="430.0">
+               <HBox.margin>
+                  <Insets left="130.0" />
+               </HBox.margin>
+               <children>
+                  <Label fx:id="lblRollType" layoutX="51.0" layoutY="15.0" prefHeight="34.0" prefWidth="64.0" textFill="#094fb7" translateY="-3.0">
+                     <font>
+                        <Font name="SansSerif Regular" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblUserName" layoutX="51.0" layoutY="43.0" prefHeight="34.0" prefWidth="144.0" translateY="-3.0">
+                     <font>
+                        <Font name="SansSerif Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="192.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" translateY="-6.0">
+                     <image>
+                        <Image url="@images/avator.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_close" fitHeight="27.0" fitWidth="27.0" layoutX="351.0" layoutY="32.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/icons/close.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.0" />
+               </color></DropShadow>
+         </effect>
+      </HBox>
+   </top>
+</BorderPane>

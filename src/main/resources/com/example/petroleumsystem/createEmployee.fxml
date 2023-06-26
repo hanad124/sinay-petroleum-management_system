@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="652.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.petroleumsystem.CreateEmployee">
+   <children>
+      <Label layoutX="52.0" layoutY="40.0" text="Create New Employee" textFill="#04285c">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="52.0" layoutY="89.0" prefHeight="312.0" prefWidth="570.0" style="-fx-border-color: #DDE2E5; -fx-border-radius: 5; -fx-background-color: #fff; -fx-border-style: solid; -fx-background-radius: 5; -fx-border-width: 1PX;">
+         <children>
+            <TextField fx:id="txtEmployeeName" layoutX="18.0" layoutY="48.0" prefHeight="44.0" prefWidth="275.0" promptText="employee name" style="-fx-border-radius: 5; -fx-background-color: white; -fx-border-color: #E7E8F2; -fx-border-style: solid; -fx-border-width: 1px; -fx-background-radius: 5;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtEmployeeAddress" layoutX="18.0" layoutY="139.0" prefHeight="44.0" prefWidth="275.0" promptText="employee address" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-width: 1px; -fx-border-radius: 5; -fx-border-style: solid; -fx-border-color: #E7E8F2;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtEmployeePhone" layoutX="312.0" layoutY="48.0" prefHeight="44.0" prefWidth="238.0" promptText="employee phone" style="-fx-background-color: white; -fx-border-color: #E7E8F2; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 1px; -fx-border-style: solid;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <MFXButton layoutX="31.0" layoutY="218.0" onAction="#onSaveEmployee" prefHeight="51.0" prefWidth="163.0" style="-fx-background-color: #094FB7; -fx-text-fill: #fff; -fx-font-weight: bold;" text="Save">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MFXButton>
+            <Label layoutX="21.0" layoutY="18.0" text="Name" textFill="#04285c">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="312.0" layoutY="19.0" text="Phone" textFill="#04285c">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="110.0" text="Address" textFill="#04285c">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <MFXButton layoutX="205.0" layoutY="217.0" onAction="#onUpdateEMployee" prefHeight="51.0" prefWidth="163.0" style="-fx-background-color: #094FB7; -fx-text-fill: #fff; -fx-font-weight: bold;" text="Update">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MFXButton>
+            <MFXButton layoutX="377.0" layoutY="218.0" onAction="#onDeleteEmployee" prefHeight="51.0" prefWidth="163.0" style="-fx-background-color: #094FB7; -fx-text-fill: #fff; -fx-font-weight: bold;" text="Delete">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1244.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.petroleumsystem.Fuel">
+   <children>
+      <Pane layoutX="25.0" layoutY="208.0" prefHeight="412.0" prefWidth="446.0" style="-fx-border-width: 1px; -fx-border-color: #E7E8F2; -fx-border-style: solid; -fx-background-radius: 10; -fx-border-radius: 10; -fx-background-color: white;">
+         <children>
+            <TextField fx:id="txtTunkCapacity" layoutX="39.0" layoutY="216.0" prefHeight="44.0" prefWidth="249.0" promptText="Tank Capacity" style="-fx-border-radius: 5; -fx-background-color: white; -fx-border-color: #E7E8F2; -fx-border-style: solid; -fx-border-width: 1px; -fx-background-radius: 5;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <MFXButton layoutX="27.0" layoutY="318.0" onAction="#OnSave" prefHeight="47.0" prefWidth="100.0" style="-fx-background-color: #094FB7; -fx-text-fill: #fff; -fx-font-weight: bold;" text="Save">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MFXButton>
+            <MFXButton layoutX="135.0" layoutY="317.0" prefHeight="47.0" prefWidth="100.0" style="-fx-background-color: #094FB7; -fx-text-fill: #fff; -fx-font-weight: bold;" text="Update">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MFXButton>
+            <MFXButton layoutX="241.0" layoutY="317.0" onAction="#OnDelete" prefHeight="47.0" prefWidth="100.0" style="-fx-background-color: #094FB7; -fx-text-fill: #fff; -fx-font-weight: bold;" text="Delete">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MFXButton>
+            <MFXButton layoutX="313.0" layoutY="37.0" onAction="#OnAddTunkNumber" prefHeight="48.0" prefWidth="100.0" style="-fx-background-color: #094FB7; -fx-text-fill: #fff; -fx-font-weight: bold;" text="Add Tunk">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MFXButton>
+            <MFXButton layoutX="313.0" layoutY="111.0" onAction="#OnAddFuelType" prefHeight="48.0" prefWidth="100.0" style="-fx-background-color: #094FB7; -fx-text-fill: #fff; -fx-font-weight: bold;" text="Add Fuel">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MFXButton>
+            <ComboBox fx:id="cmbTunkNumber" layoutX="39.0" layoutY="35.0" onAction="#fetchComboFuel" prefHeight="50.0" prefWidth="249.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-border-color: #E7E8F2; -fx-border-style: solid; -fx-border-width: solid; -fx-background-radius: 5;" />
+            <ComboBox fx:id="cmbFuelType" layoutX="42.0" layoutY="109.0" onAction="#fetchComboFuel" prefHeight="50.0" prefWidth="249.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-border-color: #E7E8F2; -fx-border-style: solid; -fx-border-width: solid; -fx-background-radius: 5;" />
+         </children>
+      </Pane>
+      <TableView fx:id="TableViewInfo" layoutX="489.0" layoutY="204.0" onMouseClicked="#getTableOfData" prefHeight="412.0" prefWidth="742.0" style="-fx-background-color: white; -fx-border-color: #E7E8F2; -fx-border-width: 1px; -fx-border-style: solid; -fx-border-radius: 10; -fx-background-radius: 10;">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="61.0" text="id" />
+            <TableColumn fx:id="tunkNumber" prefWidth="75.0" text="Tunk_number" />
+            <TableColumn fx:id="fuelType" prefWidth="75.0" text="Fuel_Type" />
+            <TableColumn fx:id="tunkCapacity" prefWidth="75.0" text="Tunk_capacity" />
+         </columns>
+         <effect>
+            <DropShadow height="24.71" radius="11.6675" width="23.96">
+               <color>
+                  <Color red="0.7300000190734863" green="0.7226999998092651" blue="0.7226999998092651" opacity="0.0" />
+               </color></DropShadow>
+         </effect>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label alignment="CENTER" layoutX="9.0" layoutY="20.0" prefHeight="68.0" prefWidth="70.0" text="Fuel" textFill="#05295cc4">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <MFXButton depthLevel="LEVEL3" layoutX="412.0" layoutY="40.0" onAction="#OnRefresh" prefHeight="47.0" prefWidth="110.0" rippleAnimateShadow="true" rippleRadiusMultiplier="4.0" style="-fx-background-color: #094FB7; -fx-text-fill: #fff;" text="refresh">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <FontAwesomeIcon fill="WHITE" glyphName="REFRESH" translateX="-10.0" />
+         </graphic>
+      </MFXButton>
+      <TextField fx:id="txtSearch" layoutX="939.0" layoutY="130.0" onKeyPressed="#OnSearchPress" prefHeight="50.0" prefWidth="290.0" promptText="Search by Id No" style="-fx-border-width: 1px; -fx-border-style: solid; -fx-border-color: #E7E8F2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: white;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label alignment="CENTER" layoutX="133.0" layoutY="142.0" prefHeight="68.0" prefWidth="201.0" text="Create New Fuel" textFill="#04285c">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
