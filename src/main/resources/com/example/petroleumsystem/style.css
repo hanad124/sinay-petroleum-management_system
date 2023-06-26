@@ -1,0 +1,63 @@
+#btn_dashboard,
+ #btn_employee,
+ #btn_supplier,
+ #btn_purchase,
+ #btn_fuel{
+-fx-background-color: #094FB7;
+}
+
+/* Hover button style */
+#btn_dashboard:hover,
+ #btn_employee:hover,
+ #btn_supplier:hover,
+ #btn_purchase:hover,
+ #btn_users:hover,
+ #btn_fuel:hover,
+ #btn_sales:hover,
+ #btn_reports:hover,
+ #btn_logout:hover,
+ #btn_customer:hover
+ {
+-fx-background-color: #1C64D0 !important;;
+}
+
+/* Active button style */
+#btn_dashboard.active,
+ #btn_employee.active,
+ #btn_supplier.active,
+ #btn_purchase.active,
+ #btn_sales.active,
+ #btn_users.active,
+ #btn_reports.active,
+ #btn_logout.active,
+ #btn_customer.active,
+ #btn_fuel.active {
+    -fx-background-color: #1C64D0 !important; /* green */
+    -fx-text-fill: #FFFFFF; /* white */
+}
+
+#lblRollType {
+-fx-color: #094fb7;
+-fx-text-transform: uppercase !important;
+}
+
+#lblUserName {
+    -fx-text-transform: capitalize;
+}
+
+.default-color0.chart-bar {
+-fx-bar-fill: #094FB7;
+}
+
+.chart-plot-background {
+    -fx-background-color: #E7E8F2;
+}
+
+.chart-plot-background {
+    -fx-border-radius: 15;
+}
+
+
+.default-color1.chart-bar {
+-fx-bar-fill: #1C64D0;
+}
