@@ -18,7 +18,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1244.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.petroleumsystem.Purchase">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1244.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.petroleumsystem.Sales">
    <children>
       <Pane layoutX="12.0" layoutY="69.0" prefHeight="267.0" prefWidth="1143.0" style="-fx-border-width: 1px; -fx-border-color: #E7E8F2; -fx-border-style: solid; -fx-background-radius: 10; -fx-border-radius: 10; -fx-background-color: white;">
          <children>
@@ -30,7 +30,8 @@
                   <DropShadow height="9.14" radius="4.07" width="9.14">
                      <color>
                         <Color red="0.8600000143051147" green="0.8600000143051147" blue="0.8600000143051147" opacity="0.0" />
-                     </color></DropShadow>
+                     </color>
+                  </DropShadow>
                </effect>
             </TextField>
             <ComboBox fx:id="cmbSupplierName" layoutX="27.0" layoutY="16.0" onAction="#FetchCmboSupplier" prefHeight="44.0" prefWidth="250.0" promptText="Supplier name" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #E7E8F2;">
@@ -38,7 +39,8 @@
                   <DropShadow height="15.0" radius="7.0" width="15.0">
                      <color>
                         <Color red="0.8600000143051147" green="0.8600000143051147" blue="0.8600000143051147" opacity="0.0" />
-                     </color></DropShadow>
+                     </color>
+                  </DropShadow>
                </effect>
             </ComboBox>
             <ComboBox fx:id="cmbFuelType" layoutX="308.0" layoutY="16.0" onAction="#FetchCmboFuel" prefHeight="44.0" prefWidth="250.0" promptText="Fuel type" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #E7E8F2;">
@@ -46,10 +48,11 @@
                   <DropShadow height="15.0" radius="7.0" width="15.0">
                      <color>
                         <Color red="0.8600000143051147" green="0.8600000143051147" blue="0.8600000143051147" opacity="0.0" />
-                     </color></DropShadow>
+                     </color>
+                  </DropShadow>
                </effect>
             </ComboBox>
-            <TextField fx:id="txtSupplierPhone" layoutX="25.0" layoutY="96.0" prefHeight="44.0" prefWidth="250.0" promptText="Supplier phone" style="-fx-border-style: solid; -fx-border-color: #E7E8F2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: white;">
+            <TextField fx:id="txtCustomerPhone" layoutX="25.0" layoutY="96.0" prefHeight="44.0" prefWidth="250.0" promptText="Supplier phone" style="-fx-border-style: solid; -fx-border-color: #E7E8F2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: white;">
                <font>
                   <Font name="SansSerif Regular" size="15.0" />
                </font>
@@ -57,7 +60,8 @@
                   <DropShadow height="9.14" radius="4.07" width="9.14">
                      <color>
                         <Color red="0.8600000143051147" green="0.8600000143051147" blue="0.8600000143051147" opacity="0.0" />
-                     </color></DropShadow>
+                     </color>
+                  </DropShadow>
                </effect>
             </TextField>
             <TextField fx:id="txtLitters" layoutX="583.0" layoutY="16.0" prefHeight="44.0" prefWidth="250.0" promptText="Litters" style="-fx-border-style: solid; -fx-border-color: #E7E8F2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: white;">
@@ -68,7 +72,8 @@
                   <DropShadow height="9.14" radius="4.07" width="9.14">
                      <color>
                         <Color red="0.8600000143051147" green="0.8600000143051147" blue="0.8600000143051147" opacity="0.0" />
-                     </color></DropShadow>
+                     </color>
+                  </DropShadow>
                </effect>
             </TextField>
             <TextField fx:id="txtPerLitters" layoutX="585.0" layoutY="96.0" prefHeight="44.0" prefWidth="250.0" promptText="price per Litter" style="-fx-border-style: solid; -fx-border-color: #E7E8F2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: white;">
@@ -79,7 +84,8 @@
                   <DropShadow height="9.14" radius="4.07" width="9.14">
                      <color>
                         <Color red="0.8600000143051147" green="0.8600000143051147" blue="0.8600000143051147" opacity="0.0" />
-                     </color></DropShadow>
+                     </color>
+                  </DropShadow>
                </effect>
             </TextField>
             <TextField fx:id="txtTotalPrice" layoutX="856.0" layoutY="16.0" prefHeight="44.0" prefWidth="250.0" promptText="Total Price" style="-fx-border-style: solid; -fx-border-color: #E7E8F2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: white;">
@@ -90,7 +96,8 @@
                   <DropShadow height="9.14" radius="4.07" width="9.14">
                      <color>
                         <Color red="0.8600000143051147" green="0.8600000143051147" blue="0.8600000143051147" opacity="0.0" />
-                     </color></DropShadow>
+                     </color>
+                  </DropShadow>
                </effect>
             </TextField>
             <DatePicker fx:id="txtDate" layoutX="856.0" layoutY="99.0" prefHeight="44.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #E7E8F2;">
@@ -98,7 +105,8 @@
                   <DropShadow height="15.0" radius="7.0" width="15.0">
                      <color>
                         <Color red="0.8600000143051147" green="0.8600000143051147" blue="0.8600000143051147" opacity="0.0" />
-                     </color></DropShadow>
+                     </color>
+                  </DropShadow>
                </effect>
             </DatePicker>
             <RadioButton fx:id="radioBtnPending" layoutX="866.0" layoutY="169.0" mnemonicParsing="false" onAction="#togglePending" text="Pending">
@@ -112,14 +120,15 @@
             <DropShadow>
                <color>
                   <Color red="0.8600000143051147" green="0.8600000143051147" blue="0.8600000143051147" opacity="0.0" />
-               </color></DropShadow>
+               </color>
+            </DropShadow>
          </effect>
       </Pane>
       <TableView fx:id="TableViewInfo" layoutX="10.0" layoutY="360.0" onMouseClicked="#getTableOfData" prefHeight="327.0" prefWidth="1143.0" style="-fx-background-color: white; -fx-border-color: #E7E8F2; -fx-border-width: 1px; -fx-border-style: solid; -fx-border-radius: 10; -fx-background-radius: 10;">
          <columns>
             <TableColumn fx:id="id" prefWidth="61.0" text="id" />
-            <TableColumn fx:id="colSupplierName" prefWidth="75.0" text="Supplier Name" />
-            <TableColumn fx:id="colSupplierPhone" prefWidth="75.0" text="Supplier phone" />
+            <TableColumn fx:id="colCustomerName" prefWidth="75.0" text="Customer Name" />
+            <TableColumn fx:id="colCustomerPhone" prefWidth="75.0" text="Customer phone" />
             <TableColumn fx:id="colFuelType" prefWidth="75.0" text="Fuel type" />
             <TableColumn fx:id="colTunkNumber" prefWidth="75.0" text="Tunk number" />
             <TableColumn fx:id="colLitters" prefWidth="75.0" text="Litters" />
@@ -132,7 +141,8 @@
             <DropShadow height="24.71" radius="11.6675" width="23.96">
                <color>
                   <Color red="0.7300000190734863" green="0.7226999998092651" blue="0.7226999998092651" opacity="0.0" />
-               </color></DropShadow>
+               </color>
+            </DropShadow>
          </effect>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -149,7 +159,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label alignment="CENTER" layoutX="7.0" layoutY="-4.0" prefHeight="68.0" prefWidth="110.0" text="Purchase" textFill="#05295cc4">
+      <Label alignment="CENTER" layoutX="7.0" layoutY="-4.0" prefHeight="68.0" prefWidth="110.0" text="Sales" textFill="#05295cc4">
          <font>
             <Font size="20.0" />
          </font>

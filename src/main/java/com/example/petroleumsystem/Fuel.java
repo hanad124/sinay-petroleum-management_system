@@ -204,6 +204,7 @@ public class Fuel implements Initializable {
             FuelClass fuelClass = TableViewInfo.getSelectionModel().getSelectedItem();
             ObservableList<Integer> t_number = FXCollections.observableArrayList(fuelClass.getTunk_number());
             ObservableList<String> fuel = FXCollections.observableArrayList(fuelClass.getFuel_type());
+
             cmbTunkNumber.setItems(t_number);
             cmbFuelType.setItems(fuel);
             txtTunkCapacity.setText(fuelClass.getTunk_capacity());

@@ -11,7 +11,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -101,6 +103,9 @@ public class Purchase implements Initializable {
     @FXML
     private TableColumn<purchaseClass, String> colStatus;
 
+    String status = "";
+
+
     @FXML
     void FetchCmboFuel() throws SQLException {
 
@@ -145,8 +150,57 @@ public class Purchase implements Initializable {
     }
 
     @FXML
-    void OnSave(ActionEvent event) {
+    void toggleApproved(ActionEvent event) {
+        status = "Approved";
+    }
 
+    @FXML
+    void togglePending(ActionEvent event) {
+        status = "Pending";
+    }
+
+    @FXML
+    void OnSave(ActionEvent event) {
+        try{
+            if(cmbSupplierName.equals("") || cmbFuelType.equals("") || txtLitters.getText().equals("") || txtTotalPrice.getText().equals("") || txtSupplierPhone.getText().equals("") || txtTunkNumber.getText().equals("") || txtPerLitters.getText().equals("") || txtDate.getValue().equals("")){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("ERROR");
+                alert.setContentText("fields can not empty ...");
+                alert.show();
+            }
+            else {
+                String combo_supp_name = cmbSupplierName.getSelectionModel().getSelectedItem();
+                String fuel = cmbFuelType.getSelectionModel().getSelectedItem();
+                String litters = txtLitters.getText();
+                String totalPrice = txtTotalPrice.getText();
+                String suppPhone = txtSupplierPhone.getText();
+                int tunk_number = Integer.parseInt(txtTunkNumber.getText());
+                int pricePerLitter = Integer.parseInt(txtPerLitters.getText());
+                String date = String.valueOf(txtDate.getValue());
+
+                PreparedStatement ps = db.connection.prepareStatement("insert into purchase values(default , ? , ? , ?, ?, ?, ?, ?, ?, ?)");
+
+                ps.setString(1,combo_supp_name);
+                ps.setString(2,suppPhone);
+                ps.setString(3,fuel);
+                ps.setInt(4,tunk_number);
+                ps.setString(5,litters);
+                ps.setInt(6,pricePerLitter);
+                ps.setString(7,totalPrice);
+                ps.setString(8,date);
+                ps.setString(9,status);
+                ps.executeUpdate();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("SAVE");
+                alert.setContentText("Successfully Purchase saved ...");
+                alert.show();
+                FetchData();
+//                ClearData();
+            }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -157,8 +211,39 @@ public class Purchase implements Initializable {
 
     @FXML
     void getTableOfData(MouseEvent event) {
+        try{
+            purchaseClass purchaseClass = TableViewInfo.getSelectionModel().getSelectedItem();
 
+            ObservableList<String> supplier_name = FXCollections.observableArrayList(purchaseClass.getSupplier_name());
+            ObservableList<Integer> supplier_phone = FXCollections.observableArrayList(purchaseClass.getSupplier_phone());
+            ObservableList<String> fuel_type = FXCollections.observableArrayList(purchaseClass.getFuel_type());
+            ObservableList<Integer> tunk_number = FXCollections.observableArrayList(purchaseClass.getTunk_number());
+            ObservableList<Integer> litters = FXCollections.observableArrayList(purchaseClass.getLitters());
+            ObservableList<Integer> per_litters = FXCollections.observableArrayList(purchaseClass.getPer_litters());
+            ObservableList<Integer> total_price = FXCollections.observableArrayList(purchaseClass.getTotal_price());
+            ObservableList<Date> date = FXCollections.observableArrayList(purchaseClass.getDate());
+            ObservableList<String> status = FXCollections.observableArrayList(purchaseClass.getStatus());
 
+            cmbSupplierName.setItems(supplier_name);
+            txtSupplierPhone.setText((supplier_phone).toString());
+            cmbFuelType.setItems(fuel_type);
+            txtTunkNumber.setText(String.valueOf(tunk_number));
+            txtLitters.setText(String.valueOf(litters));
+            txtPerLitters.setText(String.valueOf(per_litters));
+            txtTotalPrice.setText(String.valueOf(total_price));
+            txtDate.setValue(LocalDate.parse(String.valueOf(date)));
+
+//            if(status == "Approved"){
+//                radioBtnPending.setSelected(false);
+//                radioBtnApproved.setSelected(true);
+//            } else if (status.equals("Pending")) {
+//                radioBtnApproved.setSelected(false);
+//                radioBtnPending.setSelected(true);
+//            }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
@@ -212,6 +297,7 @@ public class Purchase implements Initializable {
         try {
             FetchCmboSupplier();
             FetchCmboFuel();
+            FetchData();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

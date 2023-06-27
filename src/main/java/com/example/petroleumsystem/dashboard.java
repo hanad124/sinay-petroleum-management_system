@@ -118,6 +118,11 @@ public class dashboard implements Initializable{
 
     @FXML
     void OnSale(ActionEvent event) {
+        System.out.println("you Clicked me! ");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPane("Sales");
+        fxborderPane.setCenter(view);
+
         setActiveButton(btn_sales);
     }
 
