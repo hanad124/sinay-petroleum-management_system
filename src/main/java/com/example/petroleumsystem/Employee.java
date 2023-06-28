@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -192,6 +193,56 @@ public class Employee implements Initializable {
 
     }
 
+
+    @FXML
+    void onSearchText(InputMethodEvent event) throws SQLException {
+        TableViewInfo.getItems().clear();
+        TableViewInfo.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        id.setCellValueFactory(new PropertyValueFactory<EmployeeClass , Integer>("id"));
+        name.setCellValueFactory(new PropertyValueFactory<EmployeeClass , String>("name"));
+        phone.setCellValueFactory(new PropertyValueFactory<EmployeeClass , Integer>("phone"));
+        address.setCellValueFactory(new PropertyValueFactory<EmployeeClass , String>("address"));
+        int Search = Integer.parseInt(txtSearch.getText());
+        db con = new db("select * from employee where id = '"+Search+"' ");
+        while (db.resultSet.next()){
+            list.addAll(new EmployeeClass(
+                    db.resultSet.getInt("id"),
+                    db.resultSet.getString("name"),
+                    db.resultSet.getInt("phone"),
+                    db.resultSet.getString("address")
+            ));
+            TableViewInfo.setItems(list);
+        }
+    }
+
+    TextFormatter<String> formatter = new TextFormatter<>(change -> {
+        if (txtSearch.getText() != ""){
+            TableViewInfo.getItems().clear();
+            TableViewInfo.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+            id.setCellValueFactory(new PropertyValueFactory<EmployeeClass , Integer>("id"));
+            name.setCellValueFactory(new PropertyValueFactory<EmployeeClass , String>("name"));
+            phone.setCellValueFactory(new PropertyValueFactory<EmployeeClass , Integer>("phone"));
+            address.setCellValueFactory(new PropertyValueFactory<EmployeeClass , String>("address"));
+            String  Search = txtSearch.getText();
+            try {
+                db con = new db("select * from employee where name = '"+Search+"' ");
+                while (db.resultSet.next()){
+                    list.addAll(new EmployeeClass(
+                            db.resultSet.getInt("id"),
+                            db.resultSet.getString("name"),
+                            db.resultSet.getInt("phone"),
+                            db.resultSet.getString("address")
+                    ));
+                    TableViewInfo.setItems(list);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+        return change;
+    });
     @FXML
     void getTableOfData(MouseEvent event) {
         EmployeeClass employeeClass = TableViewInfo.getSelectionModel().getSelectedItem();
@@ -228,6 +279,9 @@ public class Employee implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             FetchData();
+//            String Search = txtSearch.getText();
+            txtSearch.setTextFormatter(formatter);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

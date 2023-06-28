@@ -252,27 +252,45 @@ public class Sales implements Initializable {
                 alert.show();
             }
             else {
-                String name = cmbSupplierName.getValue();
-                int phone = Integer.parseInt(txtCustomerPhone.getText());
-                String fuelType = cmbFuelType.getValue();
+                String customer_name = cmbSupplierName.getValue();
+                int customer_phone = Integer.parseInt(txtCustomerPhone.getText());
+                String fuel_type = cmbFuelType.getValue();
+                int tunk_number = Integer.parseInt(txtTunkNumber.getText());
                 int litters = Integer.parseInt(txtLitters.getText());
-                int totalPrice = Integer.parseInt(txtTotalPrice.getText());
-                int perLitter = Integer.parseInt(txtPerLitters.getText());
+                int per_litters = Integer.parseInt(txtPerLitters.getText());
+                int total_price = Integer.parseInt(txtTotalPrice.getText());
                 LocalDate date = txtDate.getValue();
-                String radioStatus = status;
+                String radioStatus = "";
+
+                if (radioBtnApproved.isSelected()){
+                    radioStatus = "Approved";
+                } else if (radioBtnPending.isSelected()) {
+                    radioStatus = "Pending";
+                }
                 int myIndex = TableViewInfo.getSelectionModel().getSelectedIndex();
                 int id = Integer.parseInt(String.valueOf(TableViewInfo.getItems().get(myIndex).getId()));
-                PreparedStatement ps = db.connection.prepareStatement("update sales set customer_name = ? , customer_phone = ? , fuel_type = ?, tunk_number = ?, litters = ?, per_litters = ?,   where id = ? ");
-                ps.setString(1,name);
-                ps.setInt(2, phone);
-                ps.setString(3,address);
-                ps.setInt(4,id);
+                PreparedStatement ps = db.connection.prepareStatement("update sales set customer_name = ? , customer_phone = ?, fuel_type = ?, tunk_number = ?, litters = ?, per_litters = ?, total_price = ?, date = ?, status = ?,  where id = ?");
+
+                ps.setString(1,customer_name);
+                ps.setInt(2, customer_phone);
+                ps.setString(3,fuel_type);
+                ps.setInt(4, tunk_number);
+                ps.setInt(5, litters);
+                ps.setInt(6, per_litters);
+                ps.setInt(7, total_price);
+                ps.setString(8, String.valueOf(date));
+                ps.setString(9,radioStatus);
+
+                System.out.println("Salected status: "+radioStatus);
+
+                ps.setInt(10,id);
+
                 ps.executeUpdate();
                 FetchData();
-                ClearData();
+//                ClearData();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("UPDATED");
-                alert.setContentText("Successfully Supplier Updated ...");
+                alert.setContentText("Sales Successfully Updated ...");
                 alert.show();
             }
 

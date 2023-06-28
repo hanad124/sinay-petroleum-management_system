@@ -95,7 +95,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField fx:id="txtSearch" layoutX="939.0" layoutY="130.0" onKeyPressed="#OnSearchPress" prefHeight="50.0" prefWidth="290.0" promptText="Search by Id No" style="-fx-border-width: 1px; -fx-border-style: solid; -fx-border-color: #E7E8F2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: white;">
+      <TextField fx:id="txtSearch" layoutX="939.0" layoutY="130.0" onInputMethodTextChanged="#onSearchText" onKeyPressed="#OnSearchPress" prefHeight="50.0" prefWidth="290.0" promptText="Search by Id No" style="-fx-border-width: 1px; -fx-border-style: solid; -fx-border-color: #E7E8F2; -fx-border-radius: 5; -fx-background-radius: 5; -fx-background-color: white;">
          <font>
             <Font size="15.0" />
          </font>
