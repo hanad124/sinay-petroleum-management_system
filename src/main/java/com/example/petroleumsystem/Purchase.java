@@ -141,7 +141,22 @@ public class Purchase implements Initializable {
 
     @FXML
     void OnDelete(ActionEvent event) {
-
+        try{
+            int myIndex = TableViewInfo.getSelectionModel().getSelectedIndex();
+            int id = Integer.valueOf(String.valueOf(TableViewInfo.getItems().get(myIndex).getId()));
+            PreparedStatement ps = db.connection.prepareStatement("delete from purchase where id = ? ");
+            ps.setInt(1,id);
+            ps.executeUpdate();
+            FetchData();
+            ClearData();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("DELETE");
+            alert.setContentText("successfully Purchase deleted ...");
+            alert.show();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
@@ -195,7 +210,7 @@ public class Purchase implements Initializable {
                 alert.setContentText("Successfully Purchase saved ...");
                 alert.show();
                 FetchData();
-//                ClearData();
+                ClearData();
             }
 
         }catch (Exception e){
@@ -215,31 +230,25 @@ public class Purchase implements Initializable {
             purchaseClass purchaseClass = TableViewInfo.getSelectionModel().getSelectedItem();
 
             ObservableList<String> supplier_name = FXCollections.observableArrayList(purchaseClass.getSupplier_name());
-            ObservableList<Integer> supplier_phone = FXCollections.observableArrayList(purchaseClass.getSupplier_phone());
+            txtSupplierPhone.setText(String.valueOf(purchaseClass.getSupplier_phone()));
             ObservableList<String> fuel_type = FXCollections.observableArrayList(purchaseClass.getFuel_type());
-            ObservableList<Integer> tunk_number = FXCollections.observableArrayList(purchaseClass.getTunk_number());
-            ObservableList<Integer> litters = FXCollections.observableArrayList(purchaseClass.getLitters());
-            ObservableList<Integer> per_litters = FXCollections.observableArrayList(purchaseClass.getPer_litters());
-            ObservableList<Integer> total_price = FXCollections.observableArrayList(purchaseClass.getTotal_price());
-            ObservableList<Date> date = FXCollections.observableArrayList(purchaseClass.getDate());
-            ObservableList<String> status = FXCollections.observableArrayList(purchaseClass.getStatus());
+            txtLitters.setText(String.valueOf(purchaseClass.getLitters()));
+            txtTotalPrice.setText(String.valueOf(purchaseClass.getTotal_price()));
+            txtTunkNumber.setText(String.valueOf(purchaseClass.getTunk_number()));
+            txtPerLitters.setText(String.valueOf(purchaseClass.getPer_litters()));
+            txtDate.setValue(LocalDate.parse(String.valueOf(purchaseClass.getDate())));
 
-            cmbSupplierName.setItems(supplier_name);
-            txtSupplierPhone.setText((supplier_phone).toString());
-            cmbFuelType.setItems(fuel_type);
-            txtTunkNumber.setText(String.valueOf(tunk_number));
-            txtLitters.setText(String.valueOf(litters));
-            txtPerLitters.setText(String.valueOf(per_litters));
-            txtTotalPrice.setText(String.valueOf(total_price));
-            txtDate.setValue(LocalDate.parse(String.valueOf(date)));
+            cmbSupplierName.getItems().add(String.valueOf(supplier_name));
+            cmbFuelType.getItems().add(String.valueOf(fuel_type));
 
-//            if(status == "Approved"){
-//                radioBtnPending.setSelected(false);
-//                radioBtnApproved.setSelected(true);
-//            } else if (status.equals("Pending")) {
-//                radioBtnApproved.setSelected(false);
-//                radioBtnPending.setSelected(true);
-//            }
+            if(purchaseClass.getStatus().equals("Approved")){
+                radioBtnPending.setSelected(false);
+                radioBtnApproved.setSelected(true);
+            } else if (purchaseClass.getStatus().equals("Pending")) {
+                radioBtnApproved.setSelected(false);
+                radioBtnPending.setSelected(true);
+            }
+
 
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -248,7 +257,59 @@ public class Purchase implements Initializable {
 
     @FXML
     void onEdit(ActionEvent event) {
+        try{
+            if(cmbSupplierName.getValue().equals("") || cmbFuelType.getValue().equals("") || txtLitters.getText().equals("") || txtTotalPrice.getText().equals("") || txtPerLitters.getText().equals("") || txtDate.getValue().equals("")){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("ERROR");
+                alert.setContentText("fields can not empty ...");
+                alert.show();
+            }
+            else {
+                String supplierr_name = cmbSupplierName.getSelectionModel().getSelectedItem();
+                int supplier_phone = Integer.parseInt(txtSupplierPhone.getText());
+                String fuel_type = cmbFuelType.getSelectionModel().getSelectedItem();
+                int tunk_number = Integer.parseInt(txtTunkNumber.getText());
+                int litters = Integer.parseInt(txtLitters.getText());
+                int per_litters = Integer.parseInt(txtPerLitters.getText());
+                int total_price = Integer.parseInt(txtTotalPrice.getText());
+                LocalDate date = txtDate.getValue();
+                String radioStatus = "";
 
+                if (radioBtnApproved.isSelected()){
+                    radioStatus = "Approved";
+                } else if (radioBtnPending.isSelected()) {
+                    radioStatus = "Pending";
+                }
+                int myIndex = TableViewInfo.getSelectionModel().getSelectedIndex();
+                int id = Integer.parseInt(String.valueOf(TableViewInfo.getItems().get(myIndex).getId()));
+                PreparedStatement ps = db.connection.prepareStatement("update purchase set supplier_name = ? , supplier_phone = ?, fuel_type = ?, tunk_number = ?, litters = ?, per_litters = ?, total_price = ?, date = ?, status = ?  where id = ?");
+
+                ps.setString(1,supplierr_name);
+                ps.setInt(2, supplier_phone);
+                ps.setString(3,fuel_type);
+                ps.setInt(4, tunk_number);
+                ps.setInt(5, litters);
+                ps.setInt(6, per_litters);
+                ps.setInt(7, total_price);
+                ps.setString(8, String.valueOf(date));
+                ps.setString(9,radioStatus);
+
+                System.out.println("Salected status: "+radioStatus);
+
+                ps.setInt(10,id);
+
+                ps.executeUpdate();
+                FetchData();
+                ClearData();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("UPDATED");
+                alert.setContentText("Sales Successfully Updated ...");
+                alert.show();
+            }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
 
@@ -290,6 +351,16 @@ public class Purchase implements Initializable {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    void ClearData(){
+        txtSearch.clear();
+        txtSupplierPhone.clear();
+        txtPerLitters.clear();
+        txtLitters.clear();
+        txtDate.setValue(LocalDate.parse(""));
+        txtTunkNumber.clear();
+        txtTotalPrice.clear();
     }
 
     @Override

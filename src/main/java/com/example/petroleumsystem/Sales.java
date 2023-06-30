@@ -142,7 +142,22 @@ public class Sales implements Initializable {
 
     @FXML
     void OnDelete(ActionEvent event) {
-
+        try{
+            int myIndex = TableViewInfo.getSelectionModel().getSelectedIndex();
+            int id = Integer.valueOf(String.valueOf(TableViewInfo.getItems().get(myIndex).getId()));
+            PreparedStatement ps = db.connection.prepareStatement("delete from sales where id = ? ");
+            ps.setInt(1,id);
+            ps.executeUpdate();
+            FetchData();
+            ClearData();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("DELETE");
+            alert.setContentText("successfully Sales deleted ...");
+            alert.show();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
@@ -196,7 +211,7 @@ public class Sales implements Initializable {
                 alert.setContentText("Successfully Purchase saved ...");
                 alert.show();
                 FetchData();
-//                ClearData();
+                ClearData();
             }
 
         }catch (Exception e){
@@ -252,9 +267,9 @@ public class Sales implements Initializable {
                 alert.show();
             }
             else {
-                String customer_name = cmbSupplierName.getValue();
+                String customer_name = cmbSupplierName.getSelectionModel().getSelectedItem();
                 int customer_phone = Integer.parseInt(txtCustomerPhone.getText());
-                String fuel_type = cmbFuelType.getValue();
+                String fuel_type = cmbFuelType.getSelectionModel().getSelectedItem();
                 int tunk_number = Integer.parseInt(txtTunkNumber.getText());
                 int litters = Integer.parseInt(txtLitters.getText());
                 int per_litters = Integer.parseInt(txtPerLitters.getText());
@@ -269,7 +284,7 @@ public class Sales implements Initializable {
                 }
                 int myIndex = TableViewInfo.getSelectionModel().getSelectedIndex();
                 int id = Integer.parseInt(String.valueOf(TableViewInfo.getItems().get(myIndex).getId()));
-                PreparedStatement ps = db.connection.prepareStatement("update sales set customer_name = ? , customer_phone = ?, fuel_type = ?, tunk_number = ?, litters = ?, per_litters = ?, total_price = ?, date = ?, status = ?,  where id = ?");
+                PreparedStatement ps = db.connection.prepareStatement("update sales set customer_name = ? , customer_phone = ?, fuel_type = ?, tunk_number = ?, litters = ?, per_litters = ?, total_price = ?, date = ?, status = ?  where id = ?");
 
                 ps.setString(1,customer_name);
                 ps.setInt(2, customer_phone);
@@ -287,7 +302,7 @@ public class Sales implements Initializable {
 
                 ps.executeUpdate();
                 FetchData();
-//                ClearData();
+                ClearData();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("UPDATED");
                 alert.setContentText("Sales Successfully Updated ...");
@@ -338,6 +353,15 @@ public class Sales implements Initializable {
             System.out.println(e.getMessage());
         }
 
+    }
+    void ClearData(){
+        txtSearch.clear();
+        txtCustomerPhone.clear();
+        txtPerLitters.clear();
+        txtLitters.clear();
+        txtDate.setValue(LocalDate.parse(""));
+        txtTunkNumber.clear();
+        txtTotalPrice.clear();
     }
 
     @Override

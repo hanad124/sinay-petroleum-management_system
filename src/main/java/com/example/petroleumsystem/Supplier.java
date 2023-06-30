@@ -80,7 +80,6 @@ public class Supplier implements Initializable {
            System.out.println(e.getMessage());
        }
 
-
     }
 
     @FXML
