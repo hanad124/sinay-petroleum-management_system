@@ -196,23 +196,33 @@ public class Employee implements Initializable {
 
     @FXML
     void onSearchText(InputMethodEvent event) throws SQLException {
-        TableViewInfo.getItems().clear();
-        TableViewInfo.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        id.setCellValueFactory(new PropertyValueFactory<EmployeeClass , Integer>("id"));
-        name.setCellValueFactory(new PropertyValueFactory<EmployeeClass , String>("name"));
-        phone.setCellValueFactory(new PropertyValueFactory<EmployeeClass , Integer>("phone"));
-        address.setCellValueFactory(new PropertyValueFactory<EmployeeClass , String>("address"));
-        int Search = Integer.parseInt(txtSearch.getText());
-        db con = new db("select * from employee where id = '"+Search+"' ");
-        while (db.resultSet.next()){
-            list.addAll(new EmployeeClass(
-                    db.resultSet.getInt("id"),
-                    db.resultSet.getString("name"),
-                    db.resultSet.getInt("phone"),
-                    db.resultSet.getString("address")
-            ));
-            TableViewInfo.setItems(list);
+
+        if (txtSearch.getText() == ""){
+
+            FetchData();
         }
+        else {
+            TableViewInfo.getItems().clear();
+            TableViewInfo.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+            id.setCellValueFactory(new PropertyValueFactory<EmployeeClass , Integer>("id"));
+            name.setCellValueFactory(new PropertyValueFactory<EmployeeClass , String>("name"));
+            phone.setCellValueFactory(new PropertyValueFactory<EmployeeClass , Integer>("phone"));
+            address.setCellValueFactory(new PropertyValueFactory<EmployeeClass , String>("address"));
+
+            int Search = Integer.parseInt(txtSearch.getText());
+
+            db con = new db("select * from employee where id = '"+Search+"' ");
+            while (db.resultSet.next()){
+                list.addAll(new EmployeeClass(
+                        db.resultSet.getInt("id"),
+                        db.resultSet.getString("name"),
+                        db.resultSet.getInt("phone"),
+                        db.resultSet.getString("address")
+                ));
+                TableViewInfo.setItems(list);
+            }
+        }
+
     }
 
     TextFormatter<String> formatter = new TextFormatter<>(change -> {

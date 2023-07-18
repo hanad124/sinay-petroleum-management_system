@@ -45,12 +45,13 @@ public class ForgetPassword {
             lblPrintPass.setTextFill(Paint.valueOf("red"));
         }
         else {
+            lblPrintPass.setTextFill(Paint.valueOf("black"));
             String user_question = ReadQuestion.getText();
             db con = new db("select user_answer , user_password from users where user_question = '"+user_question+"' ");
             if(db.resultSet.next()){
                 String user_answer = db.resultSet.getString("user_answer");
                 System.out.println(user_answer);
-                if(user_answer.contains(txtPassword.getText())){
+                if(user_answer.equals(txtPassword.getText())){
                     lblPrintPass.setText(db.resultSet.getString("user_password"));
                     ClearData ();
                 }
