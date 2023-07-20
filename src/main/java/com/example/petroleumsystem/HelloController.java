@@ -32,6 +32,7 @@ public class HelloController {
     @FXML
     private PasswordField txtHidePass;
 
+
     @FXML
     private Hyperlink ForgetpassLink;
 
@@ -39,28 +40,38 @@ public class HelloController {
     private Label lblResult;
 
 
-    @FXML
-    void OnHidePassword(ActionEvent event) {
-        if(btnCheckPass.isSelected()){
-
-        }
-    }
 
     @FXML
     void OnLogin(ActionEvent event) throws SQLException {
 
         try{
-            if(txtUser.getText().equals("") || txtPassword.getText().equals("")){
-                lblResult.setText("fill the black field ...");
+            if(txtUser.getText().equals("") || txtHidePass.getText().equals("")){
+                lblResult.setText("fill the blank field ...");
                 ClearFields();
             }
             else {
                 String user = txtUser.getText();
-                String pass = txtPassword.getText();
+                String pass = txtHidePass.getText();
                 db con = new db("select * from users where user_name = '"+user+"' and user_password = '"+pass+"' ");
                 if(db.resultSet.next()){
                     dashboard.user_name = db.resultSet.getString("user_name");
                     dashboard.roll_type = db.resultSet.getString("roll_type");
+
+                    String roll = db.resultSet.getString("roll_type");
+
+                    if(roll.equals("user".toLowerCase())){
+                        dashboard dash = new dashboard();
+//                        dash.btn_dashboard.setVisible(false);
+
+//                            dashboard.btn_users.setVisible(false);
+//                            dashboard.btn_users.setVisible(false);
+//                            dashboard dashboard = new dashboard();
+//                            dashboard.hidenSomeButtons();
+                    }
+                    else {
+
+                    }
+
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
                     Scene scene = new Scene(fxmlLoader.load());
                     Stage stage = new Stage();
@@ -69,16 +80,9 @@ public class HelloController {
 //                    stage.initStyle(StageStyle.UTILITY);
                     stage.setTitle("dashboard page ");
                     stage.setScene(scene);
-
-                    String roll = db.resultSet.getString("user_name");
-
-                    if(roll.equals("user".toLowerCase())){
-                        System.out.println("Entered AS USER: ");
-                    }
-                    else {
-                        System.out.println("Entered AS ADMIN: ");
-                    }
                     stage.show();
+
+//
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                 }
                 else {
@@ -99,13 +103,13 @@ public class HelloController {
     void OnLoginWithEnter(KeyEvent event) throws SQLException  {
         if(event.getCode() == KeyCode.ENTER){
             try{
-                if(txtUser.getText().equals("") || txtPassword.getText().equals("")){
-                    lblResult.setText("fill the black field ...");
+                if(txtUser.getText().equals("") || txtHidePass.getText().equals("")){
+                    lblResult.setText("fill the blank field ...");
                     ClearFields();
                 }
                 else {
                     String user = txtUser.getText();
-                    String pass = txtPassword.getText();
+                    String pass = txtHidePass.getText();
                     db con = new db("select * from users where user_name = '"+user+"' and user_password = '"+pass+"' ");
                     if(db.resultSet.next()){
                         dashboard.user_name = db.resultSet.getString("user_name");
@@ -115,7 +119,7 @@ public class HelloController {
 
                         if(roll.equals("user".toLowerCase())){
                             dashboard dash = new dashboard();
-                            dash.btn_dashboard.setVisible(false);
+//                            dash.btn_dashboard.setVisible(false);
 
 //                            dashboard.btn_users.setVisible(false);
 //                            dashboard.btn_users.setVisible(false);
@@ -163,6 +167,21 @@ public class HelloController {
         stage.setScene(scene);
         stage.show();
         ((Node)(event.getSource())).getScene().getWindow().hide();
+    }
+
+
+    @FXML
+    void OnHidePassword(ActionEvent event) {
+        if(btnCheckPass.isSelected()){
+            txtPassword.setText(String.valueOf(txtHidePass.getText()));
+            txtPassword.setVisible(true);
+            txtHidePass.setVisible(false);
+        }
+        else {
+            txtHidePass.setText(String.valueOf(txtPassword.getText()));
+            txtHidePass.setVisible(true);
+            txtPassword.setVisible(false);
+        }
     }
 
     void ClearFields (){

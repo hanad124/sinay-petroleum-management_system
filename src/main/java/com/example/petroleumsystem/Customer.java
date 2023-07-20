@@ -142,7 +142,7 @@ public class Customer implements Initializable {
                 String name = txtName.getText();
                 int phone = Integer.valueOf(txtPhone.getText());
                 String address = txtAddress.getText();
-                PreparedStatement ps = db.connection.prepareStatement("insert into customer values( default , ? , ? , ?)");
+                PreparedStatement ps = db.connection.prepareStatement("insert into customer (id, name, phone, address) values( default , ? , ? , ?)");
                 ps.setString(1,name);
                 ps.setInt(2, phone);
                 ps.setString(3,address);

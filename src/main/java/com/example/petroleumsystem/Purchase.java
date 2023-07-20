@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -104,6 +105,11 @@ public class Purchase implements Initializable {
     private TableColumn<purchaseClass, String> colStatus;
 
     String status = "";
+
+    int enteredLiters;
+    int newLiters;
+
+    int currentLiters = 0;
 
 
     @FXML
@@ -205,6 +211,25 @@ public class Purchase implements Initializable {
                 ps.setString(8,date);
                 ps.setString(9,status);
                 ps.executeUpdate();
+
+                db con = new db("select tunk_capacity from fuel where fuel_type = '"+fuel+"'");
+
+                while (db.resultSet.next()){
+                    int testValue = db.resultSet.getInt("tunk_capacity");
+                    currentLiters = testValue;
+                }
+
+                enteredLiters = Integer.parseInt(litters);
+                newLiters = currentLiters + enteredLiters;
+                System.out.println("SUBSTRACTED VALUE "+newLiters);
+                System.out.println("CURRENT VALUE "+currentLiters);
+
+                // Update the liters value in the database
+                PreparedStatement ps2 = db.connection.prepareStatement("update fuel set tunk_capacity = ? where fuel_type = ?");
+                ps2.setInt(1, newLiters);
+                ps2.setString(2, fuel);
+                ps2.executeUpdate();
+                
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("SAVE");
                 alert.setContentText("Successfully Purchase saved ...");
@@ -362,6 +387,16 @@ public class Purchase implements Initializable {
         txtTunkNumber.clear();
         txtTotalPrice.clear();
     }
+
+
+    @FXML
+    void onTutal(KeyEvent event) {
+        double liters = Double.parseDouble(txtLitters.getText());
+        double pricePerLiter = Double.parseDouble(txtPerLitters.getText());
+        double totalCost = liters * pricePerLiter;
+        txtTotalPrice.setText(String.format("%.2f", totalCost));
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
@@ -106,6 +107,14 @@ public class Sales implements Initializable {
 
     String status = "";
 
+    @FXML
+    void onTotal(KeyEvent event) {
+        double liters = Double.parseDouble(txtLitters.getText());
+        double pricePerLiter = Double.parseDouble(txtPerLitters.getText());
+        double totalCost = liters * pricePerLiter;
+        txtTotalPrice.setText(String.format("%.2f", totalCost));
+    }
+
 
     @FXML
     void FetchCmboFuel() throws SQLException {
@@ -174,17 +183,21 @@ public class Sales implements Initializable {
     void togglePending(ActionEvent event) {
         status = "Pending";
     }
+    int enteredLiters;
+    int newLiters;
+
+    int currentLiters = 0;
 
     @FXML
     void OnSave(ActionEvent event) {
-        try{
-            if(cmbSupplierName.equals("") || cmbFuelType.equals("") || txtLitters.getText().equals("") || txtTotalPrice.getText().equals("") || txtCustomerPhone.getText().equals("") || txtTunkNumber.getText().equals("") || txtPerLitters.getText().equals("") || txtDate.getValue().equals("")){
+
+        try {
+            if (cmbSupplierName.equals("") || cmbFuelType.equals("") || txtLitters.getText().equals("") || txtTotalPrice.getText().equals("") || txtCustomerPhone.getText().equals("") || txtTunkNumber.getText().equals("") || txtPerLitters.getText().equals("") || txtDate.getValue().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR");
                 alert.setContentText("fields can not empty ...");
                 alert.show();
-            }
-            else {
+            } else {
                 String combo_supp_name = cmbSupplierName.getSelectionModel().getSelectedItem();
                 String fuel = cmbFuelType.getSelectionModel().getSelectedItem();
                 String litters = txtLitters.getText();
@@ -194,18 +207,38 @@ public class Sales implements Initializable {
                 int pricePerLitter = Integer.parseInt(txtPerLitters.getText());
                 String date = String.valueOf(txtDate.getValue());
 
-                PreparedStatement ps = db.connection.prepareStatement("insert into sales values(default , ? , ? , ?, ?, ?, ?, ?, ?, ?)");
+                // Insert the sales data into the database
+                PreparedStatement ps3 = db.connection.prepareStatement("insert into sales values(default , ? , ? , ?, ?, ?, ?, ?, ?, ?)");
+                ps3.setString(1, combo_supp_name);
+                ps3.setString(2, suppPhone);
+                ps3.setString(3, fuel);
+                ps3.setInt(4, tunk_number);
+                ps3.setString(5, litters);
+                ps3.setInt(6, pricePerLitter);
+                ps3.setString(7, totalPrice);
+                ps3.setString(8, date);
+                ps3.setString(9, status);
+                ps3.executeUpdate();
 
-                ps.setString(1,combo_supp_name);
-                ps.setString(2,suppPhone);
-                ps.setString(3,fuel);
-                ps.setInt(4,tunk_number);
-                ps.setString(5,litters);
-                ps.setInt(6,pricePerLitter);
-                ps.setString(7,totalPrice);
-                ps.setString(8,date);
-                ps.setString(9,status);
-                ps.executeUpdate();
+
+                db con = new db("select tunk_capacity from fuel where fuel_type = '"+fuel+"'");
+
+                while (db.resultSet.next()){
+                    int testValue = db.resultSet.getInt("tunk_capacity");
+                    currentLiters = testValue;
+                }
+
+                enteredLiters = Integer.parseInt(litters);
+                newLiters = currentLiters - enteredLiters;
+                System.out.println("SUBSTRACTED VALUE "+newLiters);
+                System.out.println("CURRENT VALUE "+currentLiters);
+
+                // Update the liters value in the database
+                PreparedStatement ps2 = db.connection.prepareStatement("update fuel set tunk_capacity = ? where fuel_type = ?");
+                ps2.setInt(1, newLiters);
+                ps2.setString(2, fuel);
+                ps2.executeUpdate();
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("SAVE");
                 alert.setContentText("Successfully Purchase saved ...");
@@ -213,11 +246,9 @@ public class Sales implements Initializable {
                 FetchData();
                 ClearData();
             }
-
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     @FXML

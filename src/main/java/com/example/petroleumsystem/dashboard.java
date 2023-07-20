@@ -81,7 +81,7 @@ public class dashboard implements Initializable{
 
 
     public dashboard() {
-        btn_dashboard.setVisible(true);;
+//        btn_dashboard.setVisible(true);
 //        btn_dashboard = new Button("Dashboard");
 //        btn_dashboard = new Button("Dashboard");
 

@@ -173,6 +173,10 @@ public class Home implements Initializable {
                 series1.setName("2022");
 
                 series1.getData().add(new XYChart.Data(customername, customerTotalPurchase));
+                series1.getData().add(new XYChart.Data(customername, customerTotalPurchase));
+                series1.getData().add(new XYChart.Data(customername, customerTotalPurchase));
+//
+//
 //                series1.getData().add(new XYChart.Data("Mohamed", 4333));
 //                series1.getData().add(new XYChart.Data("Abdi Kafi", 10000));
 //                series1.getData().add(new XYChart.Data("Usama", 35000));

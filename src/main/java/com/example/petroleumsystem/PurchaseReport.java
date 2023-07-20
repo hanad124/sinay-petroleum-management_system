@@ -27,7 +27,7 @@ public class PurchaseReport {
         Map param = new HashMap();
 
         try {
-            jp = JasperFillManager.fillReport("reports/purchReport.jasper",param, ReportConnection.createConnection());
+            jp = JasperFillManager.fillReport("reports/PurchaseReport.jasper",param, ReportConnection.createConnection());
 
             JasperViewer viewer = new JasperViewer(jp, false);
             viewer.setTitle("Purchase Report");
@@ -53,7 +53,7 @@ public class PurchaseReport {
         Map param = new HashMap();
 
         try {
-            jp = JasperFillManager.fillReport("reports/salReport.jasper",param, ReportConnection.createConnection());
+            jp = JasperFillManager.fillReport("reports/salesReport.jasper",param, ReportConnection.createConnection());
 
             JasperViewer viewer = new JasperViewer(jp, false);
             viewer.setTitle("Sales Report");
