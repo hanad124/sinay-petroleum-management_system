@@ -161,25 +161,40 @@ public class Home implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        try{
+            db con = new db("SELECT * FROM `sales`");
+            while (db.resultSet.next()){
+//                lbl_salesTotal.setText("$"+String.valueOf(db.resultSet.getInt("total_price")));
+                String customername = db.resultSet.getString("customer_name");
+                int customerTotalPurchase = Integer.parseInt(db.resultSet.getString("total_price"));
 
-        XYChart.Series series1 = new XYChart.Series();
-        series1.setName("2022");
 
-        series1.getData().add(new XYChart.Data("Hanad", 2323));
-        series1.getData().add(new XYChart.Data("Mohamed", 4333));
-        series1.getData().add(new XYChart.Data("Abdi Kafi", 10000));
-        series1.getData().add(new XYChart.Data("Usama", 35000));
-        series1.getData().add(new XYChart.Data("Cumar", 1200));
+                XYChart.Series series1 = new XYChart.Series();
+                series1.setName("2022");
 
-        XYChart.Series series2 = new XYChart.Series();
-        series2.setName("2023");
+                series1.getData().add(new XYChart.Data(customername, customerTotalPurchase));
+//                series1.getData().add(new XYChart.Data("Mohamed", 4333));
+//                series1.getData().add(new XYChart.Data("Abdi Kafi", 10000));
+//                series1.getData().add(new XYChart.Data("Usama", 35000));
+//                series1.getData().add(new XYChart.Data("Cumar", 1200));
 
-        series2.getData().add(new XYChart.Data("Hanad", 2323));
-        series2.getData().add(new XYChart.Data("Mohamed", 4333));
-        series2.getData().add(new XYChart.Data("Abdi Kafi", 10000));
-        series2.getData().add(new XYChart.Data("Usama", 35000));
-        series2.getData().add(new XYChart.Data("Cumar", 1200));
+//                XYChart.Series series2 = new XYChart.Series();
+//                series2.setName("2023");
 
-        barchart_totalsales.getData().addAll(series1, series2);
+//                series2.getData().add(new XYChart.Data("Hanad", 2323));
+//                series2.getData().add(new XYChart.Data("Mohamed", 4333));
+//                series2.getData().add(new XYChart.Data("Abdi Kafi", 10000));
+//                series2.getData().add(new XYChart.Data("Usama", 35000));
+//                series2.getData().add(new XYChart.Data("Cumar", 1200));
+
+                barchart_totalsales.getData().addAll(series1);
+            }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
+
     }
 }

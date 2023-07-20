@@ -291,14 +291,16 @@
                         <Image url="@images/avator.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="img_close" fitHeight="27.0" fitWidth="27.0" layoutX="351.0" layoutY="32.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/icons/close.png" />
-                     </image>
+                  <Button fx:id="btn_close" layoutX="373.0" layoutY="32.0" minHeight="10.0" minWidth="10.0" mnemonicParsing="false" onAction="#btn_close" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: red; -fx-border-radius: 50%; -fx-background-radius: 50%;">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                  </ImageView>
+                  </Button>
+                  <Button fx:id="btn_Minimize" layoutX="339.0" layoutY="32.0" minHeight="10.0" minWidth="10.0" mnemonicParsing="false" onAction="#btn_Minimize" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: orange; -fx-border-radius: 50%; -fx-background-radius: 50%;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
          </children>

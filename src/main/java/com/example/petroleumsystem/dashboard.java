@@ -25,14 +25,20 @@ import java.util.ResourceBundle;
 
 public class dashboard implements Initializable{
 
+
     public static String roll_type;
     public static String user_name;
 
     private volatile boolean stop = false;
 
-
     @FXML
     private ImageView img_close;
+
+    @FXML
+    private Button btn_Minimize;
+
+    @FXML
+    private Button btn_close;
 
     @FXML
     public Label lblPrintDate;
@@ -47,10 +53,10 @@ public class dashboard implements Initializable{
     private Button btn_customer;
 
     @FXML
-    private Button btn_dashboard;
+    public Button btn_dashboard;
 
     @FXML
-    private Button btn_employee;
+    public Button btn_employee;
 
     @FXML
     private Button btn_fuel;
@@ -74,9 +80,34 @@ public class dashboard implements Initializable{
     private Button btn_users;
 
 
+    public dashboard() {
+        btn_dashboard.setVisible(true);;
+//        btn_dashboard = new Button("Dashboard");
+//        btn_dashboard = new Button("Dashboard");
+
+    }
 
     @FXML
     private BorderPane fxborderPane;
+
+//    public void hidenSomeButtons() {
+//        btn_dashboard.setVisible(false);
+//        btn_employee.setVisible(false);
+//        btn_users.setVisible(false);
+//    }
+
+    @FXML
+    void btn_Minimize(ActionEvent event) {
+        Stage stage = (Stage) btn_Minimize.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    void btn_close(ActionEvent event) {
+        Stage stage = (Stage) btn_close.getScene().getWindow();
+        stage.close();
+        System.exit(0);
+    }
 
     @FXML
     void OnCustomer(ActionEvent event) {
@@ -113,6 +144,11 @@ public class dashboard implements Initializable{
 
     @FXML
     void OnReport(ActionEvent event) {
+        System.out.println("you Clicked me! ");
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPane("purchaseReport");
+        fxborderPane.setCenter(view);
+
         setActiveButton(btn_reports);
     }
 
@@ -147,6 +183,7 @@ public class dashboard implements Initializable{
         setActiveButton(btn_users);
 
     }
+
 
     @FXML
     void onHome() {

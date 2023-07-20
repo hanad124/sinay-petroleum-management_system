@@ -44,7 +44,7 @@
                               </Label>
                               <Label fx:id="lblEmployee" layoutX="14.0" layoutY="80.0" prefHeight="32.0" prefWidth="91.0" textFill="#094fb7">
                                  <font>
-                                    <Font name="Tahoma" size="30.0" />
+                                    <Font name="Tahoma Bold" size="30.0" />
                                  </font>
                               </Label>
                               <Label layoutX="195.0" layoutY="78.0" prefHeight="39.0" prefWidth="51.0" style="-fx-background-color: red; -fx-background-radius: 8;" />
@@ -71,7 +71,7 @@
                               </Label>
                               <Label fx:id="lblCustomer" layoutX="14.0" layoutY="80.0" prefHeight="32.0" prefWidth="91.0" textFill="#094fb7">
                                  <font>
-                                    <Font name="SansSerif Regular" size="30.0" />
+                                    <Font name="Tahoma Bold" size="30.0" />
                                  </font>
                               </Label>
                               <Label layoutX="198.0" layoutY="78.0" prefHeight="39.0" prefWidth="51.0" style="-fx-background-color: #F8B400; -fx-background-radius: 8;" />
@@ -101,7 +101,7 @@
                               </Label>
                               <Label fx:id="lbl_purchaseTotal" layoutX="14.0" layoutY="78.0" prefHeight="32.0" prefWidth="91.0" textFill="#094fb7">
                                  <font>
-                                    <Font name="Tahoma" size="30.0" />
+                                    <Font name="Tahoma Bold" size="30.0" />
                                  </font>
                               </Label>
                               <Label layoutX="200.0" layoutY="78.0" prefHeight="39.0" prefWidth="51.0" style="-fx-background-color: #293462; -fx-background-radius: 8;" />
@@ -131,7 +131,7 @@
                               </Label>
                               <Label fx:id="lbl_salesTotal" layoutX="14.0" layoutY="81.0" prefHeight="32.0" prefWidth="91.0" textFill="#094fb7">
                                  <font>
-                                    <Font name="SansSerif Regular" size="30.0" />
+                                    <Font name="Tahoma Bold" size="30.0" />
                                  </font>
                               </Label>
                               <Label layoutX="201.0" layoutY="78.0" prefHeight="39.0" prefWidth="51.0" style="-fx-background-color: #764AF1; -fx-background-radius: 8;" />
@@ -155,7 +155,7 @@
                         <Font name="Tahoma" size="20.0" />
                      </font>
                   </Label>
-                  <BarChart fx:id="barchart_totalsales" layoutX="24.0" layoutY="238.0" prefHeight="483.0" prefWidth="603.0" style="-fx-background-color: white;" title="Total sales">
+                  <BarChart fx:id="barchart_totalsales" layoutX="24.0" layoutY="238.0" prefHeight="483.0" prefWidth="603.0" style="-fx-background-color: white;" title="Most Customers sales">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>

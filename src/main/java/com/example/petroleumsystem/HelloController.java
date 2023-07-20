@@ -41,7 +41,9 @@ public class HelloController {
 
     @FXML
     void OnHidePassword(ActionEvent event) {
+        if(btnCheckPass.isSelected()){
 
+        }
     }
 
     @FXML
@@ -67,6 +69,15 @@ public class HelloController {
 //                    stage.initStyle(StageStyle.UTILITY);
                     stage.setTitle("dashboard page ");
                     stage.setScene(scene);
+
+                    String roll = db.resultSet.getString("user_name");
+
+                    if(roll.equals("user".toLowerCase())){
+                        System.out.println("Entered AS USER: ");
+                    }
+                    else {
+                        System.out.println("Entered AS ADMIN: ");
+                    }
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                 }
@@ -99,6 +110,22 @@ public class HelloController {
                     if(db.resultSet.next()){
                         dashboard.user_name = db.resultSet.getString("user_name");
                         dashboard.roll_type = db.resultSet.getString("roll_type");
+
+                        String roll = db.resultSet.getString("roll_type");
+
+                        if(roll.equals("user".toLowerCase())){
+                            dashboard dash = new dashboard();
+                            dash.btn_dashboard.setVisible(false);
+
+//                            dashboard.btn_users.setVisible(false);
+//                            dashboard.btn_users.setVisible(false);
+//                            dashboard dashboard = new dashboard();
+//                            dashboard.hidenSomeButtons();
+                        }
+                        else {
+
+                        }
+
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("dashboard.fxml"));
                         Scene scene = new Scene(fxmlLoader.load());
                         Stage stage = new Stage();
@@ -108,6 +135,8 @@ public class HelloController {
                         stage.setTitle("dashboard page ");
                         stage.setScene(scene);
                         stage.show();
+
+//
                         ((Node)(event.getSource())).getScene().getWindow().hide();
                     }
                     else {
