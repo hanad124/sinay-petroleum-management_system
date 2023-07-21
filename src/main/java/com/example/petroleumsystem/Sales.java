@@ -127,6 +127,11 @@ public class Sales implements Initializable {
         }
         cmbFuelType.setItems(cmbFeul);
 
+        db connec = new db("select * from fuel where fuel_type = '"+cmbFuelType.getSelectionModel().getSelectedItem()+"' ");
+        if(db.resultSet.next()){
+            txtTunkNumber.setText(String.valueOf(db.resultSet.getInt("tunk_number")));
+        }
+
     }
 
     @FXML
@@ -143,6 +148,7 @@ public class Sales implements Initializable {
             if(db.resultSet.next()){
                 txtCustomerPhone.setText(String.valueOf(db.resultSet.getInt("phone")));
             }
+
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -204,7 +210,7 @@ public class Sales implements Initializable {
                 String totalPrice = txtTotalPrice.getText();
                 String suppPhone = txtCustomerPhone.getText();
                 int tunk_number = Integer.parseInt(txtTunkNumber.getText());
-                int pricePerLitter = Integer.parseInt(txtPerLitters.getText());
+                Double pricePerLitter = Double.parseDouble(txtPerLitters.getText());
                 String date = String.valueOf(txtDate.getValue());
 
                 // Insert the sales data into the database
@@ -214,7 +220,7 @@ public class Sales implements Initializable {
                 ps3.setString(3, fuel);
                 ps3.setInt(4, tunk_number);
                 ps3.setString(5, litters);
-                ps3.setInt(6, pricePerLitter);
+                ps3.setDouble(6, pricePerLitter);
                 ps3.setString(7, totalPrice);
                 ps3.setString(8, date);
                 ps3.setString(9, status);
@@ -332,6 +338,26 @@ public class Sales implements Initializable {
                 ps.setInt(10,id);
 
                 ps.executeUpdate();
+
+
+                db con = new db("select tunk_capacity from fuel where fuel_type = '"+fuel_type+"'");
+
+                while (db.resultSet.next()){
+                    int testValue = db.resultSet.getInt("tunk_capacity");
+                    currentLiters = testValue;
+                }
+
+                enteredLiters = litters;
+                newLiters = currentLiters - enteredLiters;
+                System.out.println("SUBSTRACTED VALUE "+newLiters);
+                System.out.println("CURRENT VALUE "+currentLiters);
+
+                // Update the liters value in the database
+                PreparedStatement ps2 = db.connection.prepareStatement("update fuel set tunk_capacity = ? where fuel_type = ?");
+                ps2.setInt(1, newLiters);
+                ps2.setString(2, fuel_type);
+                ps2.executeUpdate();
+
                 FetchData();
                 ClearData();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

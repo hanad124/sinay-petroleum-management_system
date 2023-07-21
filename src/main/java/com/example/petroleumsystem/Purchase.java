@@ -123,6 +123,10 @@ public class Purchase implements Initializable {
         }
         cmbFuelType.setItems(cmbFeul);
 
+        db connec = new db("select * from fuel where fuel_type = '"+cmbFuelType.getSelectionModel().getSelectedItem()+"' ");
+        if(db.resultSet.next()){
+            txtTunkNumber.setText(String.valueOf(db.resultSet.getInt("tunk_number")));
+        }
     }
 
     @FXML
@@ -196,7 +200,7 @@ public class Purchase implements Initializable {
                 String totalPrice = txtTotalPrice.getText();
                 String suppPhone = txtSupplierPhone.getText();
                 int tunk_number = Integer.parseInt(txtTunkNumber.getText());
-                int pricePerLitter = Integer.parseInt(txtPerLitters.getText());
+                Double pricePerLitter = Double.parseDouble(txtPerLitters.getText());
                 String date = String.valueOf(txtDate.getValue());
 
                 PreparedStatement ps = db.connection.prepareStatement("insert into purchase values(default , ? , ? , ?, ?, ?, ?, ?, ?, ?)");
@@ -206,10 +210,11 @@ public class Purchase implements Initializable {
                 ps.setString(3,fuel);
                 ps.setInt(4,tunk_number);
                 ps.setString(5,litters);
-                ps.setInt(6,pricePerLitter);
+                ps.setDouble(6,pricePerLitter);
                 ps.setString(7,totalPrice);
                 ps.setString(8,date);
                 ps.setString(9,status);
+
                 ps.executeUpdate();
 
                 db con = new db("select tunk_capacity from fuel where fuel_type = '"+fuel+"'");
@@ -229,7 +234,7 @@ public class Purchase implements Initializable {
                 ps2.setInt(1, newLiters);
                 ps2.setString(2, fuel);
                 ps2.executeUpdate();
-                
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("SAVE");
                 alert.setContentText("Successfully Purchase saved ...");
